@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tietosuojaseloste – Pielisen Pyörä Oy</title>
+<style>
+:root {
+    --black: #0d0d0d;
+    --yellow: #f5c200;
+    --yellow-dark: #c79e00;
+    --white: #f5f0e8;
+    --gray: #1a1a1a;
+    --gray-mid: #2e2e2e;
+    --gray-light: #888;
+    --font-display: 'Bebas Neue', sans-serif;
+    --font-body: 'DM Sans', sans-serif;
+}
+
+body {
+    margin: 0;
+    background: var(--black);
+    color: var(--white);
+    font-family: var(--font-body);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+h1, h2 {
+    font-family: var(--font-display);
+    letter-spacing: 1px;
+}
+
+h1 {
+    color: var(--yellow);
+    font-size: 42px;
+    margin-bottom: 10px;
+}
+
+h2 {
+    color: var(--yellow);
+    margin-top: 30px;
+}
+
+p {
+    color: var(--white);
+}
+
+.section {
+    background: var(--gray);
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.highlight {
+    color: var(--yellow);
+}
+
+/* ─── HEADER ─── */
+  header {
+    background: var(--black);
+    border-bottom: 3px solid var(--yellow);
+    position: sticky; top: 0; z-index: 100;
+    padding: 0 1.5rem;
+  }
+  .header-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 72px; gap: 1rem;
+  }
+  
+.logo {
+    display: flex; align-items: center; gap: 0.75rem;
+    text-decoration: none; flex-shrink: 0; cursor: pointer;
+  } 
+.logo-img {
+  height: 48px;
+  width: auto;
+  display: block;
+	}
+  
+#desktop-nav a {
+  text-decoration: none;
+}
+nav a:hover, nav a.active { color: var(--yellow); background: rgba(245,194,0,0.08); }
+
+.hamburger {
+    display: none; flex-direction: column; gap: 5px; cursor: pointer;
+    padding: 6px; background: none; border: none;
+  }
+  .hamburger span { display: block; width: 24px; height: 2px; background: var(--white); transition: all 0.3s; }
+  .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+  .mobile-nav { display: none; flex-direction: column; background: var(--gray); border-top: 1px solid var(--gray-mid); padding: 1rem 1.5rem; gap: 0.25rem; }
+  .mobile-nav.open { display: flex; }
+  .mobile-nav a { padding: 0.75rem 0; border-bottom: 1px solid var(--gray-mid); font-size: 1rem; }
+  .mobile-nav a:last-child { border-bottom: none; }
+
+/* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    .booking-layout { grid-template-columns: 1fr; }
+    .varaus-yhteenveto { position: static; }
+    .kalenteri-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (max-width: 768px) {
+    nav { display: none; }
+    .hamburger { display: flex; }
+    .form-row { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .hero { padding: 3rem 1.25rem 2.5rem; }
+    .hero::before { font-size: 5rem; top: 10%; right: -0.5rem; }
+    .palvelu-valinnat { grid-template-columns: 1fr; }
+    .pyora-valinnat { grid-template-columns: 1fr; }
+    .kalenteri-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 480px) {
+    .logo-text strong { font-size: 1.2rem; }
+    .logo-text span { display: none; }
+    .steps-indicator { flex-wrap: wrap; gap: 0.5rem; }
+    .step-ind-line { display: none; }
+    .kalenteri-grid { grid-template-columns: 1fr; }
+  }
+
+
+</style>
+</head>
+<body>
+  
+<!-- ═══════════ HEADER ═══════════ -->
+<header>
+  <div class="header-inner"> 
+    
+    <div class="logo">
+  		<a href="index.html"> 
+    	<img src="images/logo_2.webp" alt="Pielisen Pyörähuolto logo" class="logo-img">
+  		</a>
+	</div>
+       
+    <nav id="desktop-nav">
+      <a href="index.html" class="active" id="nav-etusivu">Etusivu</a>
+    </nav> 
+    
+    <button class="hamburger" id="hamburger" onclick="toggleMobile()" aria-label="Valikko">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+   
+</header>
+
+  
+<div class="container">
+
+<h1>Tietosuojaseloste</h1>
+<p>Päivitetty: 22.4.2026</p>
+
+<div class="section">
+<h2>1. Rekisterinpitäjä</h2>
+<p>
+Pielisen Pyörä Oy<br>
+Pyörätie 1<br>
+Joensuu<br>
+</p>
+</div>
+
+<div class="section">
+<h2>2. Kerättävät tiedot</h2>
+<p>
+Keräämme asiakkailta seuraavat tiedot varauksen yhteydessä:
+</p>
+<ul>
+<li>Nimi</li>
+<li>Puhelinnumero</li>
+<li>Sähköpostiosoite</li>
+</ul>
+</div>
+
+<div class="section">
+<h2>3. Tietojen käyttötarkoitus</h2>
+<p>
+Kerättyjä tietoja käytetään:
+</p>
+<ul>
+<li>Asiakasvarausten käsittelyyn</li>
+<li>Asiakaspalveluun</li>
+<li>Yhteydenottoon asiakkaan kanssa</li>
+</ul>
+</div>
+
+<div class="section">
+<h2>4. Tietojen säilytys</h2>
+<p>
+Tietoja säilytetään vain niin kauan kuin se on tarpeellista varauksen käsittelyn ja asiakassuhteen hoitamisen kannalta.
+</p>
+</div>
+
+<div class="section">
+<h2>5. Tietojen luovutus</h2>
+<p>
+Tietoja ei luovuteta kolmansille osapuolille ilman asiakkaan suostumusta, ellei laki sitä edellytä.
+</p>
+</div>
+
+<div class="section">
+<h2>6. Evästeet (cookies)</h2>
+<p>
+Sivustolla käytetään Google Analytics -sovellusta kävijäseurantaan. Hyödynnämme analytiikkaa, jonka avulla voimme kehittää palveluamme.
+</p>
+<p>
+Evästeet aktivoidaan vain käyttäjän suostumuksella. Käyttäjä voi hyväksyä tai hylätä evästeet sivustolla näytettävän bannerin kautta.
+</p>
+<p>
+Evästeet eivät sisällä henkilötietoja, joiden perusteella käyttäjä voitaisiin tunnistaa suoraan.
+</p>
+</div>
+
+<div class="section">
+<h2>7. Rekisteröidyn oikeudet</h2>
+<p>
+Asiakkaalla on oikeus:
+</p>
+<ul>
+<li>Tarkistaa omat tietonsa</li>
+<li>Pyytää tietojen oikaisua tai poistamista</li>
+<li>Vastustaa tietojen käsittelyä</li>
+</ul>
+</div>
+
+<div class="section">
+<h2>8. Yhteydenotot</h2>
+<p>
+Tietosuojaan liittyvissä asioissa voit ottaa yhteyttä:
+</p>
+<p class="highlight">
+Pielisen Pyörä Oy
+</p>
+</div>
+
+</div>
+</body>
+</html>

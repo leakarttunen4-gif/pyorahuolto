@@ -1,0 +1,1861 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="Pielisen Pyörähuolto Oy">
+<meta name="robots" content="index, follow">
+<title>Pyörähuolto Joensuu – Kaikki pyörät huolletaan, myös sähköpyörät</title>  
+<meta name="description" content="Pielisen Pyörähuolto Oy Joensuussa huoltaa kaikki polkupyörät, sähköpyörät ja lasten pyörät. Nopea ja luotettava pyörähuolto Pohjois-Karjalassa.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BicycleRepair",
+  "name": "Pielisen Pyörähuolto Oy",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Joensuu",
+    "addressCountry": "FI"
+  },
+  "areaServed": "Joensuu",
+  "serviceType": ["Polkupyörähuolto", "Sähköpyörähuolto"]
+}
+</script>
+<style>
+  :root {
+    --black: #0d0d0d;
+    --yellow: #f5c200;
+    --yellow-dark: #c79e00;
+    --white: #f5f0e8;
+    --gray: #1a1a1a;
+    --gray-mid: #2e2e2e;
+    --gray-light: #888;
+    --font-display: 'Bebas Neue', sans-serif;
+    --font-body: 'DM Sans', sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  .page { display: none; min-height: 100vh; }
+  .page.active { display: block; }
+
+  /* ─── HEADER ─── */
+  header {
+    background: var(--black);
+    border-bottom: 3px solid var(--yellow);
+    position: sticky; top: 0; z-index: 100;
+    padding: 0 1.5rem;
+  }
+  .header-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 72px; gap: 1rem;
+  }
+  .logo {
+    display: flex; align-items: center; gap: 0.75rem;
+    text-decoration: none; flex-shrink: 0; cursor: pointer;
+  }
+  .logo-placeholder {
+    width: 48px; height: 48px;
+    border: 2px dashed var(--yellow); border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px; color: var(--yellow); text-align: center;
+    line-height: 1.2; font-family: var(--font-body);
+    font-weight: 500; letter-spacing: 0;
+  }
+  .logo-img {
+  height: 48px;
+  width: auto;
+  display: block;
+	}
+  .logo-text { display: flex; flex-direction: column; line-height: 1; }
+  .logo-text strong { font-family: var(--font-display); font-size: 1.5rem; color: var(--yellow); letter-spacing: 1px; }
+  .logo-text span { font-size: 0.7rem; color: var(--gray-light); letter-spacing: 0.08em; text-transform: uppercase; }
+  nav { display: flex; align-items: center; gap: 0.25rem; }
+  nav a {
+    color: var(--white); text-decoration: none; font-size: 0.85rem; font-weight: 500;
+    padding: 0.5rem 0.75rem; border-radius: 4px; cursor: pointer;
+    transition: color 0.2s, background 0.2s; letter-spacing: 0.03em; white-space: nowrap;
+  }
+  nav a:hover, nav a.active { color: var(--yellow); background: rgba(245,194,0,0.08); }
+  .nav-cta {
+    background: var(--yellow) !important; color: var(--black) !important;
+    font-weight: 700 !important; padding: 0.5rem 1.1rem !important;
+    border-radius: 4px !important; margin-left: 0.5rem;
+  }
+  .nav-cta:hover { background: var(--yellow-dark) !important; }
+  .hamburger {
+    display: none; flex-direction: column; gap: 5px; cursor: pointer;
+    padding: 6px; background: none; border: none;
+  }
+  .hamburger span { display: block; width: 24px; height: 2px; background: var(--white); transition: all 0.3s; }
+  .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+  .mobile-nav { display: none; flex-direction: column; background: var(--gray); border-top: 1px solid var(--gray-mid); padding: 1rem 1.5rem; gap: 0.25rem; }
+  .mobile-nav.open { display: flex; }
+  .mobile-nav a { padding: 0.75rem 0; border-bottom: 1px solid var(--gray-mid); font-size: 1rem; }
+  .mobile-nav a:last-child { border-bottom: none; }
+
+  /* ─── HERO ─── */
+  .hero { background: var(--black); padding: 5rem 1.5rem 4rem; position: relative; overflow: hidden; }
+  .hero::before {
+    content: 'PYÖRÄ\AHUOLTO'; white-space: pre;
+    position: absolute; right: -2rem; top: 50%; transform: translateY(-50%);
+    font-family: var(--font-display); font-size: clamp(6rem, 18vw, 18rem);
+    color: rgba(245,194,0,0.04); line-height: 0.85; pointer-events: none; user-select: none;
+  }
+  .hero-inner { max-width: 1200px; margin: 0 auto; position: relative; }
+  .hero-badge { display: inline-block; background: var(--yellow); color: var(--black); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.35rem 0.9rem; border-radius: 2px; margin-bottom: 1.5rem; }
+  .hero h1 { font-family: var(--font-display); font-size: clamp(3rem, 9vw, 7rem); line-height: 0.9; letter-spacing: 2px; margin-bottom: 1.5rem; max-width: 700px; }
+  .hero h1 em { font-style: normal; color: var(--yellow); }
+  .hero-sub { font-size: 1.1rem; color: var(--gray-light); max-width: 520px; margin-bottom: 2.5rem; line-height: 1.7; }
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary { background: var(--yellow); color: var(--black); font-weight: 700; font-size: 0.95rem; padding: 0.85rem 2rem; border: none; border-radius: 4px; cursor: pointer; text-decoration: none; transition: background 0.2s, transform 0.15s; letter-spacing: 0.03em; display: inline-block; }
+  .btn-primary:hover { background: var(--yellow-dark); transform: translateY(-1px); }
+  .btn-outline { background: transparent; color: var(--white); font-weight: 600; font-size: 0.95rem; padding: 0.85rem 2rem; border: 2px solid var(--gray-mid); border-radius: 4px; cursor: pointer; text-decoration: none; transition: border-color 0.2s, color 0.2s; display: inline-block; }
+  .btn-outline:hover { border-color: var(--yellow); color: var(--yellow); }
+  .hero-image-wrap { margin-top: 3.5rem; position: relative; }
+  .ph-hero { height: 340px; }
+  .ph-medium { height: 220px; }
+
+  section { padding: 4rem 1.5rem; }
+  .section-inner { max-width: 1200px; margin: 0 auto; }
+  .section-tag { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--yellow); margin-bottom: 0.75rem; display: block; }
+  .section-title { font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.5rem); letter-spacing: 1px; margin-bottom: 1rem; line-height: 1; }
+  .section-lead { color: var(--gray-light); font-size: 1.05rem; max-width: 560px; margin-bottom: 3rem; line-height: 1.7; }
+
+  .info-strip { background: var(--yellow); padding: 1.25rem 1.5rem; }
+  .info-strip-inner { max-width: 1200px; margin: 0 auto; display: flex; gap: 2rem; flex-wrap: wrap; align-items: center; justify-content: center; }
+  .info-item { display: flex; align-items: center; gap: 0.6rem; color: var(--black); font-size: 0.9rem; font-weight: 600; }
+  .info-item .icon { font-size: 1.1rem; }
+
+  .service-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+  .service-card { background: var(--gray); border: 1px solid var(--gray-mid); border-radius: 8px; padding: 2rem; cursor: pointer; transition: border-color 0.2s, transform 0.2s; text-decoration: none; color: var(--white); display: block; }
+  .service-card:hover { border-color: var(--yellow); transform: translateY(-2px); }
+  .service-card-icon { font-size: 2rem; margin-bottom: 1rem; }
+  .service-card h3 { font-family: var(--font-display); font-size: 1.6rem; letter-spacing: 1px; margin-bottom: 0.5rem; color: var(--yellow); }
+  .service-card p { font-size: 0.9rem; color: var(--gray-light); line-height: 1.6; margin-bottom: 1.25rem; }
+  .service-card .price-tag { display: inline-block; border: 1px solid var(--yellow); color: var(--yellow); font-size: 0.8rem; font-weight: 700; padding: 0.25rem 0.7rem; border-radius: 2px; letter-spacing: 0.05em; }
+
+  .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; }
+  .step { position: relative; padding: 1.75rem; background: var(--gray); border-radius: 8px; border-top: 3px solid var(--yellow); }
+  .step-num { font-family: var(--font-display); font-size: 3.5rem; color: rgba(245,194,0,0.15); line-height: 1; margin-bottom: 0.5rem; }
+  .step h4 { font-weight: 700; font-size: 1rem; margin-bottom: 0.5rem; }
+  .step p { font-size: 0.875rem; color: var(--gray-light); line-height: 1.6; }
+
+  .promo-banner { background: linear-gradient(135deg, var(--yellow) 0%, var(--yellow-dark) 100%); border-radius: 10px; padding: 2.5rem 2rem; display: flex; gap: 2rem; align-items: center; flex-wrap: wrap; margin-top: 3rem; }
+  .promo-banner .promo-text { flex: 1; min-width: 220px; }
+  .promo-banner h3 { font-family: var(--font-display); font-size: 2rem; color: var(--black); letter-spacing: 1px; margin-bottom: 0.5rem; }
+  .promo-banner p { color: rgba(0,0,0,0.7); font-size: 0.95rem; }
+  .promo-banner .btn-dark { background: var(--black); color: var(--yellow); font-weight: 700; padding: 0.85rem 2rem; border: none; border-radius: 4px; cursor: pointer; white-space: nowrap; font-size: 0.95rem; transition: opacity 0.2s; text-decoration: none; display: inline-block; }
+  .promo-banner .btn-dark:hover { opacity: 0.85; }
+
+  .divider { border: none; border-top: 1px solid var(--gray-mid); margin: 0; }
+
+  /* ─── PALVELUT ─── */
+  .service-hero { background: var(--gray); padding: 3rem 1.5rem 2.5rem; border-bottom: 3px solid var(--yellow); }
+  .service-hero-inner { max-width: 1200px; margin: 0 auto; }
+  .sub-nav { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 2rem; }
+  .sub-nav a { padding: 0.55rem 1.2rem; background: var(--black); border: 1px solid var(--gray-mid); color: var(--white); font-size: 0.85rem; font-weight: 600; border-radius: 4px; cursor: pointer; text-decoration: none; transition: all 0.2s; }
+  .sub-nav a:hover, .sub-nav a.active { background: var(--yellow); color: var(--black); border-color: var(--yellow); }
+  .service-section { display: none; padding: 3rem 1.5rem; }
+  .service-section.active { display: block; }
+  .content-list { list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0.75rem; margin: 1.5rem 0; }
+  .content-list li { display: flex; align-items: flex-start; gap: 0.6rem; font-size: 0.9rem; color: var(--white); padding: 0.75rem 1rem; background: var(--gray); border-radius: 6px; border-left: 3px solid var(--yellow); }
+  .content-list li::before { content: '✓'; color: var(--yellow); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+  .price-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; }
+  .price-table th { text-align: left; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--yellow); padding: 10px; border-bottom: 2px solid #ccc var(--yellow); }
+  .price-table td { padding: 10px; font-size: 0.95rem; border-bottom: 1px solid var(--gray-mid); }
+  .price-table th:last-child,
+  .price-table td:last-child {
+  text-align: right;
+	} 
+  .price-table tr:hover td { background: rgba(245,194,0,0.04); }
+  .other-services { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1.5rem; }
+  .other-service-item { background: var(--gray); border: 1px solid var(--gray-mid); border-radius: 8px; padding: 1.5rem; transition: border-color 0.2s; }
+  .other-service-item:hover { border-color: var(--yellow); }
+  .other-service-item .osi-icon { font-size: 1.75rem; margin-bottom: 0.75rem; }
+  .other-service-item h4 { font-weight: 700; margin-bottom: 0.4rem; }
+  .other-service-item p { font-size: 0.85rem; color: var(--gray-light); }
+
+  /* ─── YHTEYSTIEDOT ─── */
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: start; }
+  .contact-card { background: var(--gray); border: 1px solid var(--gray-mid); border-radius: 10px; padding: 2rem; }
+  .contact-detail { display: flex; align-items: flex-start; gap: 1rem; padding: 1.1rem 0; border-bottom: 1px solid var(--gray-mid); }
+  .contact-detail:last-child { border-bottom: none; }
+  .contact-detail .cd-icon { font-size: 1.3rem; flex-shrink: 0; margin-top: 2px; }
+  .contact-detail .cd-content label { display: block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gray-light); margin-bottom: 0.2rem; }
+  .contact-detail .cd-content a { color: var(--yellow); text-decoration: none; font-weight: 500; }
+  .contact-detail .cd-content a:hover { text-decoration: underline; }
+  .contact-detail .cd-content p { font-size: 0.95rem; }
+
+  /* ═══════════════════════════════════════════════
+     AJANVARAUSKALENTERI – uusi toteutus
+  ═══════════════════════════════════════════════ */
+  .booking-layout {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 2.5rem;
+    align-items: start;
+  }
+
+  /* ── Vaihe-indikaattori ── */
+  .steps-indicator {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    margin-bottom: 2.5rem;
+  }
+  .step-ind {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--gray-light);
+    transition: color 0.3s;
+  }
+  .step-ind.active { color: var(--yellow); }
+  .step-ind.done   { color: var(--white); }
+  .step-ind-num {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    border: 2px solid currentColor;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.75rem; font-weight: 800;
+    flex-shrink: 0;
+    transition: background 0.3s, border-color 0.3s;
+  }
+  .step-ind.active .step-ind-num { background: var(--yellow); border-color: var(--yellow); color: var(--black); }
+  .step-ind.done .step-ind-num   { background: var(--white);  border-color: var(--white);  color: var(--black); }
+  .step-ind-line { flex: 1; height: 2px; background: var(--gray-mid); margin: 0 0.75rem; min-width: 20px; }
+
+  /* ── Vaihe 1: Palvelun valinta ── */
+  .palvelu-valinnat {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+  }
+  .palvelu-btn {
+    background: var(--gray);
+    border: 2px solid var(--gray-mid);
+    border-radius: 8px;
+    padding: 1.25rem 1rem;
+    cursor: pointer;
+    transition: border-color 0.2s, transform 0.15s;
+    text-align: left;
+    color: var(--white);
+  }
+  .palvelu-btn:hover { border-color: rgba(245,194,0,0.5); transform: translateY(-1px); }
+  .palvelu-btn.selected { border-color: var(--yellow); background: rgba(245,194,0,0.07); }
+  .palvelu-btn .pb-icon { font-size: 1.6rem; margin-bottom: 0.5rem; }
+  .palvelu-btn .pb-nimi { font-family: var(--font-display); font-size: 1.1rem; letter-spacing: 1px; color: var(--yellow); display: block; margin-bottom: 0.2rem; }
+  .palvelu-btn .pb-hinta { font-size: 0.78rem; color: var(--gray-light); }
+
+  /* ── Vaihe 2: Pyörätyyppi ── */
+  .pyora-valinnat {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+    margin-bottom: 0.5rem;
+  }
+  .pyora-btn {
+    background: var(--gray);
+    border: 2px solid var(--gray-mid);
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    cursor: pointer;
+    transition: border-color 0.2s;
+    text-align: left;
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .pyora-btn:hover { border-color: rgba(245,194,0,0.5); }
+  .pyora-btn.selected { border-color: var(--yellow); background: rgba(245,194,0,0.07); }
+  .pyora-btn .pyora-icon { font-size: 1.4rem; flex-shrink: 0; }
+  .pyora-btn .pyora-nimi { font-weight: 600; font-size: 0.9rem; }
+
+  /* ── Vaihe 3: Kalenteri ── */
+  .kalenteri-wrap { position: relative; }
+  .kalenteri-spinner {
+    display: none;
+    position: absolute; inset: 0;
+    background: rgba(13,13,13,0.85);
+    border-radius: 10px;
+    z-index: 10;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 1rem;
+    font-size: 0.9rem;
+    color: var(--gray-light);
+  }
+  .kalenteri-spinner.vis { display: flex; }
+  .spinner-ring {
+    width: 36px; height: 36px;
+    border: 3px solid var(--gray-mid);
+    border-top-color: var(--yellow);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .viikko-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.25rem;
+    gap: 0.5rem;
+  }
+  .viikko-nav button {
+    background: var(--gray);
+    border: 1px solid var(--gray-mid);
+    color: var(--white);
+    width: 38px; height: 38px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: border-color 0.2s, color 0.2s;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .viikko-nav button:hover:not(:disabled) { border-color: var(--yellow); color: var(--yellow); }
+  .viikko-nav button:disabled { opacity: 0.3; cursor: default; }
+  .viikko-otsikko {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+    color: var(--white);
+    text-align: center;
+    flex: 1;
+  }
+
+  .kalenteri-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0.5rem;
+  }
+
+  .kalenteri-paiva {
+    background: var(--gray);
+    border: 1px solid var(--gray-mid);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .paiva-otsikko {
+    padding: 0.6rem 0.5rem;
+    text-align: center;
+    border-bottom: 1px solid var(--gray-mid);
+    background: rgba(0,0,0,0.3);
+  }
+  .paiva-viikonpaiva {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gray-light);
+    display: block;
+  }
+  .paiva-pvm {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    letter-spacing: 1px;
+    color: var(--white);
+    display: block;
+    line-height: 1.1;
+  }
+  .paiva-pvm.tanaan { color: var(--yellow); }
+
+  .paiva-ajat {
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    min-height: 80px;
+  }
+
+  .aika-nappi {
+    background: transparent;
+    border: 1px solid var(--gray-mid);
+    color: var(--white);
+    border-radius: 5px;
+    padding: 0.4rem 0.3rem;
+    font-size: 0.72rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s;
+    text-align: center;
+    letter-spacing: 0.02em;
+    font-family: var(--font-body);
+  }
+  .aika-nappi:hover { border-color: var(--yellow); color: var(--yellow); background: rgba(245,194,0,0.06); }
+  .aika-nappi.valittu { background: var(--yellow); border-color: var(--yellow); color: var(--black); font-weight: 800; }
+  .aika-nappi.varattu { border-color: var(--gray-mid); color: var(--gray-mid); cursor: not-allowed; text-decoration: line-through; }
+
+  .ei-aikoja {
+    font-size: 0.72rem;
+    color: var(--gray-mid);
+    text-align: center;
+    padding: 1rem 0;
+    font-style: italic;
+  }
+
+  /* ── Vaihe 4: Lomake ── */
+  .booking-form {
+    background: var(--gray);
+    border: 1px solid var(--gray-mid);
+    border-radius: 10px;
+    padding: 2rem;
+  }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .form-group { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1.1rem; }
+  .form-group label { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gray-light); }
+  .form-group input,
+  .form-group select,
+  .form-group textarea { background: var(--black); border: 1px solid var(--gray-mid); color: var(--white); font-family: var(--font-body); font-size: 0.95rem; padding: 0.7rem 0.9rem; border-radius: 5px; outline: none; transition: border-color 0.2s; }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus { border-color: var(--yellow); }
+  .form-group textarea { resize: vertical; min-height: 90px; }
+  .form-group select option { background: var(--gray); }
+  .form-err { border-color: #e04060 !important; }
+
+  /* ── Yhteenveto-palkki ── */
+  .varaus-yhteenveto {
+    background: var(--gray);
+    border: 1px solid var(--gray-mid);
+    border-radius: 10px;
+    padding: 1.5rem;
+    position: sticky;
+    top: 88px;
+  }
+  .yhteenveto-otsikko {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    letter-spacing: 1px;
+    color: var(--yellow);
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--gray-mid);
+  }
+  .yht-rivi {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid var(--gray-mid);
+  }
+  .yht-rivi:last-of-type { border-bottom: none; }
+  .yht-label { color: var(--gray-light); }
+  .yht-arvo { font-weight: 600; text-align: right; }
+  .yht-arvo.highlight { color: var(--yellow); font-family: var(--font-display); font-size: 1.1rem; letter-spacing: 1px; }
+  .yht-placeholder { font-size: 0.82rem; color: var(--gray-mid); font-style: italic; text-align: center; padding: 1.5rem 0; }
+
+  /* ── Valmis-näkymä ── */
+  .varaus-valmis {
+    display: none;
+    text-align: center;
+    padding: 2rem 0;
+  }
+  .varaus-valmis.vis { display: block; }
+  .valmis-ikoni { font-size: 3.5rem; margin-bottom: 1rem; }
+  .valmis-koodi {
+    background: var(--black);
+    border: 2px solid rgba(245,194,0,0.4);
+    border-radius: 8px;
+    padding: 1rem 1.5rem;
+    margin: 1.5rem 0;
+    display: inline-block;
+  }
+  .valmis-koodi span { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gray-light); display: block; margin-bottom: 0.25rem; }
+  .valmis-koodi strong { font-family: monospace; font-size: 1.6rem; letter-spacing: 4px; color: var(--yellow); }
+
+  /* ── Virheviesti-boksit ── */
+  .virhe-boksi {
+    background: rgba(220,40,80,0.12);
+    border: 1px solid rgba(220,40,80,0.4);
+    border-radius: 6px;
+    padding: 0.85rem 1rem;
+    font-size: 0.875rem;
+    color: #ff6b8a;
+    margin-bottom: 1rem;
+    display: none;
+  }
+  .virhe-boksi.vis { display: block; }
+
+  /* ── Navigaatiopalkit ── */
+  .vaihe-nav { display: flex; gap: 0.75rem; margin-top: 1.5rem; }
+  
+  
+.cookie-banner {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: #222;
+  color: white;
+  padding: 15px;
+  display: none;
+  z-index: 9999;
+}
+
+.cookie-content {
+  max-width: 1000px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.cookie-buttons button {
+  padding: 8px 12px;
+  cursor: pointer;
+  border: none;
+}
+
+.cookie-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  z-index: 10000;
+
+  /* keskitys */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cookie-modal-content {
+  background: #1a1a1a;
+  color: #eee;
+  width: 90%;
+  max-width: 420px;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+
+  font-family: sans-serif;
+}
+
+.cookie-modal-content h3 {
+  margin-top: 0;
+  color: #f5c200;
+}
+  
+.cookie-modal-content label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 12px 0;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.cookie-modal-content input[type="checkbox"] {
+  accent-color: #f5c200; /* keltainen checkbox */
+  transform: scale(1.1);
+}
+  
+.modal-buttons {
+  margin-top: 20px;
+  text-align: right;
+}
+
+#save-settings {
+  background: #f5c200;
+  color: #111;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+#save-settings:hover {
+  opacity: 0.9;
+}
+  
+.cookie-settings-link {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  font-size: 12px;
+}
+
+
+.cookie-settings-link {
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+
+  background: #222;
+  color: #f5c200;
+  padding: 8px 12px;
+  border-radius: 6px;
+
+  text-decoration: none;
+  font-size: 12px;
+}
+
+.cookie-settings-link:hover {
+  background: #333;
+}
+.footer-links a {
+  color: #f5c200;
+  margin-left: 15px;
+  text-decoration: none;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
+}
+  
+  /* ─── FOOTER ─── */
+  footer { background: var(--gray); border-top: 3px solid var(--yellow); padding: 2.5rem 1.5rem; margin-top: 2rem; }
+  .footer-inner { max-width: 1200px; margin: 0 auto; display: flex; gap: 2rem; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; }
+  .footer-brand strong { font-family: var(--font-display); font-size: 1.5rem; color: var(--yellow); letter-spacing: 1px; display: block; margin-bottom: 0.25rem; }
+  .footer-brand span { font-size: 0.8rem; color: var(--gray-light); }
+  .footer-links { display: flex; flex-direction: column; gap: 0.5rem; }
+  .footer-links a { color: var(--gray-light); text-decoration: none; font-size: 0.875rem; cursor: pointer; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--yellow); }
+  .footer-bottom { max-width: 1200px; margin: 1.5rem auto 0; padding-top: 1.5rem; border-top: 1px solid var(--gray-mid); font-size: 0.8rem; color: var(--gray-light); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; }
+
+  /* ─── TOAST ─── */
+  .toast { position: fixed; bottom: 1.5rem; left: 50%; transform: translateX(-50%) translateY(120%); background: var(--yellow); color: var(--black); font-weight: 700; font-size: 0.9rem; padding: 1rem 2rem; border-radius: 6px; z-index: 999; transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1); white-space: nowrap; }
+  .toast.show { transform: translateX(-50%) translateY(0); }
+
+  /* ─── ANIMAATIOT ─── */
+  @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  .page.active .animate { animation: fadeInUp 0.5s ease both; }
+  .animate-d1 { animation-delay: 0.05s; }
+  .animate-d2 { animation-delay: 0.15s; }
+  .animate-d3 { animation-delay: 0.25s; }
+  .animate-d4 { animation-delay: 0.35s; }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    .booking-layout { grid-template-columns: 1fr; }
+    .varaus-yhteenveto { position: static; }
+    .kalenteri-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (max-width: 768px) {
+    nav { display: none; }
+    .hamburger { display: flex; }
+    .form-row { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .hero { padding: 3rem 1.25rem 2.5rem; }
+    .hero::before { font-size: 5rem; top: 10%; right: -0.5rem; }
+    .palvelu-valinnat { grid-template-columns: 1fr; }
+    .pyora-valinnat { grid-template-columns: 1fr; }
+    .kalenteri-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 480px) {
+    .logo-text strong { font-size: 1.2rem; }
+    .logo-text span { display: none; }
+    .steps-indicator { flex-wrap: wrap; gap: 0.5rem; }
+    .step-ind-line { display: none; }
+    .kalenteri-grid { grid-template-columns: 1fr; }
+  }
+</style>
+  
+   
+</head>
+<body>
+
+<!-- ═══════════ HEADER ═══════════ -->
+<header>
+  <div class="header-inner">
+    <!-- <div class="logo" onclick="showPage('etusivu')">
+      <div class="logo-placeholder">LOGO<br>TÄHÄN</div>
+      <div class="logo-text">
+        <strong>PIELISEN<br>PYÖRÄHUOLTO</strong>
+        <span>Joensuu</span>
+      </div>
+    </div> -->
+    
+    <div class="logo" onclick="showPage('etusivu')">
+  		<img src="images/logo_2.webp" alt="Pielisen Pyörähuolto logo" class="logo-img">
+	</div>
+    
+    <nav id="desktop-nav">
+      <a onclick="showPage('etusivu')" class="active" id="nav-etusivu">Etusivu</a>
+      <a onclick="showPage('palvelut'); showService('kausihuolto')" id="nav-palvelut">Palvelut</a>
+      <a onclick="showPage('ajanvaraus')" id="nav-ajanvaraus" class="nav-cta">Varaa aika</a>
+      <a onclick="showPage('yhteystiedot')" id="nav-yhteystiedot">Yhteystiedot</a>
+    </nav>
+    <button class="hamburger" id="hamburger" onclick="toggleMobile()" aria-label="Valikko">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-nav" id="mobile-nav">
+    <a onclick="showPage('etusivu'); closeMobile()">🏠 Etusivu</a>
+    <a onclick="showPage('palvelut'); showService('kausihuolto'); closeMobile()">🔧 Palvelut</a>
+    <a onclick="showPage('ajanvaraus'); closeMobile()">📅 Varaa aika</a>
+    <a onclick="showPage('yhteystiedot'); closeMobile()">📍 Yhteystiedot</a>
+  </div>
+</header>
+  
+<!-- ═══════════ kampanja banneri ═══════════ -->
+<div id="campaign-banner" style="
+  display:none; 
+  top:0;
+  left:0;
+  width:100%;
+  background:#f5c200;
+  color:#0d0d0d;
+  text-align:center;
+  padding:10px;
+  font-weight:700;
+  z-index:9999;
+">
+  🚲 Toukokuun kampanja: -30% huolloista! 
+  <a onclick="showPage('ajanvaraus')" style="margin-left:10px;text-decoration:underline;color:#0d0d0d;cursor:pointer;">
+  Varaa aika
+  </a>
+</div>
+  
+<!-- ═══════════ ETUSIVU ═══════════ -->
+<div class="page active" id="page-etusivu">
+  <div class="hero">
+    <div class="hero-inner">
+      <div class="hero-badge animate animate-d1">Joensuu · Pyöräkatu 1</div>
+      <!-- <h1 class="animate animate-d2">PYÖRÄ<br>KUNTOON<br><em>NOPEASTI.</em></h1> -->
+      <h1 class="animate animate-d2">Pyörähuolto Joensuussa</h1>
+      <!--<p class="hero-sub animate animate-d3">Pielisen Pyörähuolto palvelee joensuulaisia pyöräilijöitä – 
+        tavalliset polkupyörät, lasten pyörät ja sähköpyörät.<br> Kaikki merkit.</p> -->
+      
+      <p class="hero-sub animate animate-d3">Tarjoamme pyörähuoltoa Joensuussa kaikenlaisille polkupyörille ja sähköpyörille. 
+        Teemme myös lasten pyörien huollot nopeasti.<br> Kaikki merkit.</p>
+      
+      <div class="hero-actions animate animate-d4">
+        <a class="btn-primary" onclick="showPage('ajanvaraus')">Varaa huoltoaika</a>
+        <a class="btn-outline" onclick="showPage('palvelut'); showService('kausihuolto')">Katso palvelut</a>
+      </div>
+      <div class="hero-image-wrap animate animate-d4">
+        <figure style="margin:0; border-radius:10px; overflow:hidden; line-height:0;">
+          <img src="images/etusivun_kuva.webp" alt="Pielisen Pyörähuolto, kuva huoltohallista" loading="lazy"
+               style="width:100%; height:400px; object-fit:cover; object-position:center 30%; display:block; border-radius:10px;">
+        </figure>
+      </div>
+    </div>
+  </div>
+
+  <div class="info-strip">
+    <div class="info-strip-inner">
+      <div class="info-item"><span class="icon">📍</span> Pyöräkatu 1, Joensuu</div>
+      <div class="info-item"><span class="icon">🔧</span> Kaikki pyörämerkit</div>
+      <div class="info-item"><span class="icon">⚡</span> Myös sähköpyörät</div>
+      <div class="info-item"><span class="icon">🛒</span> Huollot &amp; varaosat</div>
+      <div class="info-item"><span class="icon">💳</span> Pankki- ja luottokortit</div>
+    </div>
+  </div>
+
+  <section>
+    <div class="section-inner">
+      <span class="section-tag">Palvelumme</span>
+      <h2 class="section-title">MITÄ TEEMME?</h2>
+      <p class="section-lead">Pidämme pyöräsi ajokunnossa – <br>pienistä säädöistä täydelliseen kausihuoltoon.
+      Voimme myös noutaa pyöräsi huoltoon ja palauttaa valmiin. Sovitaan noudosta puhelimitse.</p>
+      <div class="service-cards">
+        <a class="service-card" onclick="showPage('palvelut'); showService('kausihuolto')">
+          <div class="service-card-icon">🔄</div>
+          <h3>KAUSIHUOLTO</h3>
+          <p>Pyörä kuntoon kauden vaihtuessa. Tarkistetaan, säädetään ja voidellaan kaikki osat.</p>
+          <span class="price-tag">alkaen 90 €</span>
+        </a>
+        <a class="service-card" onclick="showPage('palvelut'); showService('taysihuolto')">
+          <div class="service-card-icon">✨</div>
+          <h3>TÄYSHUOLTO</h3>
+          <p>Perusteellinen huolto ja käsinpesu. Saat pyörän takaisin uudenveroisena.</p>
+          <span class="price-tag">alkaen 185 €</span>
+        </a>
+        <a class="service-card" onclick="showPage('palvelut'); showService('muut')">
+          <div class="service-card-icon">🛠️</div>
+          <h3>MUUT KORJAUKSET</h3>
+          <p>Vaihteet, jarrut, renkaat, lisävarusteet. Myös pikahuollot. Saat kustannusarvion kun tuot pyörän. </p> 
+          <!-- <span class="price-tag">Pyydä kustannusarvio</span> -->
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <section>
+    <div class="section-inner">
+      <span class="section-tag">Näin toimitaan</span>
+      <h2 class="section-title">HELPPO ASIOIDA</h2>
+      <p class="section-lead">Kolme askelta toimivaan pyörään.</p>
+      <div class="steps">
+        <div class="step"><div class="step-num">01</div><h4>Varaa aika</h4><p>Täytä ajanvarauslomake. Saat vahvistuksen varaamastasi ajasta.</p></div>
+        <div class="step"><div class="step-num">02</div><h4>Tuo pyörä</h4><p>Tuo pyörä sovittuna aikana liikkeeseen. Saat kustannusarvion tarvittavista varaosista.</p></div>
+        <div class="step"><div class="step-num">03</div><h4>Nouda valmis</h4><p>Ilmoitamme tekstiviestillä tai sähköpostilla kun pyörä on valmis noudettavaksi.</p></div>
+      </div>
+      <div class="promo-banner">
+        <div class="promo-text">
+          <h3>🌟 KAUSIHUOLLON ERIKOISTARJOUS</h3>
+          <p>Varaa kausihuolto kauden lopussa – ruuhkat ohi, pyörä valmiina heti keväällä. 
+            Bonuksena <strong>talvisäilytys lämpimässä hallissa edullisesti</strong> kausihuollon varaajille!
+            Erinomainen ratkaisu sähköpyörille!</p>
+        </div>
+        <a class="btn-dark" onclick="showPage('ajanvaraus')">Varaa kausihuolto →</a>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <section>
+    <div class="section-inner">
+      <span class="section-tag">Meistä</span>
+      <h2 class="section-title">PAIKALLINEN OSAAJA</h2>
+      <p class="section-lead">Pitkä kokemus, reilu hinnoittelu ja aito kiinnostus pyöräilyyn.<br> Palvelemme Joensuussa.</p>
+      <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap:1rem; margin-top:1rem;">
+        <figure style="margin:0; border-radius:8px; overflow:hidden; line-height:0;">
+          <img src="images/rakennuksen_kuva.png" alt="Polkupyörän huolto Joensuussa" loading="lazy" style="width:100%; height:220px; object-fit:cover; display:block; border-radius:8px;">
+        </figure>
+        <figure style="margin:0; border-radius:8px; overflow:hidden; line-height:0;">
+          <img src="images/kuva_huollosta.webp" alt="Pyörän korjaaminen" loading="lazy" style="width:100%; height:220px; object-fit:cover; display:block; border-radius:8px;">
+        </figure>
+        <figure style="margin:0; border-radius:8px; overflow:hidden; line-height:0;">
+          <img src="images/lasten_pyorahuolto.webp" alt="Lasten pyörän korjaaminen" loading="lazy" style="width:100%; height:220px; object-fit:cover; display:block; border-radius:8px;">
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand"><strong>PIELISEN PYÖRÄHUOLTO OY</strong><span>Pyöräkatu 1 · 80100 Joensuu</span></div>
+      <div class="footer-links">
+        <strong style="font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--yellow);margin-bottom:0.25rem;">Sivut</strong>
+        <a onclick="showPage('etusivu')">Etusivu</a>
+        <a onclick="showPage('palvelut'); showService('kausihuolto')">Palvelut</a>
+        <a onclick="showPage('ajanvaraus')">Ajanvaraus</a>
+        <a onclick="showPage('yhteystiedot')">Yhteystiedot</a>
+        <!-- <a href="tietosuojaseloste.html" target="_blank" rel="noopener"> -->
+        <a href="tietosuojaseloste.html">
+  		Tietosuojaseloste
+		</a>
+         
+      <div class="footer-links">
+     	<a href="#" id="open-cookie-settings">Evästeasetukset</a>
+	  </div>
+        
+      </div>
+      <div class="footer-links">
+        <strong style="font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--yellow);margin-bottom:0.25rem;">Yhteystiedot</strong>
+        <a href="tel:+358401234567">040 123 4567</a>
+        <a href="mailto:info@pielisenPyorahuolto.fi">info@pielisenPyorahuolto.fi</a>
+        <span style="font-size:0.8rem;">Ma–Pe 8–17 · La 9–14</span>
+      </div>
+    </div>
+    <div class="footer-bottom"><span>© 2026 Pielisen Pyörähuolto Oy</span><span>Joensuu, Suomi</span></div>
+  </footer>
+</div>
+
+<!-- ═══════════ PALVELUT ═══════════ -->
+<div class="page" id="page-palvelut">
+  <div class="service-hero">
+    <div class="service-hero-inner">
+      <span class="section-tag">Palvelut</span>
+      <h1 class="section-title">HUOLLOT &amp; KORJAUKSET</h1>
+      <p style="color:var(--gray-light); max-width:560px; line-height:1.7;">Ammattitaitoisesti tehdyt huollot kaikille pyörämerkeille. Kerromme aina etukäteen kustannusarvion.</p>
+      <div class="sub-nav">
+        <a onclick="showService('kausihuolto')" id="subnav-kausihuolto" class="active">Kausihuolto</a>
+        <a onclick="showService('taysihuolto')" id="subnav-taysihuolto">Täyshuolto</a>
+        <a onclick="showService('muut')" id="subnav-muut">Muut korjaukset</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="service-section active" id="service-kausihuolto">
+    <div class="section-inner" style="max-width:1200px; margin:0 auto;">
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:3rem; align-items:start;">
+        <div>
+          <span class="section-tag">Kausihuolto</span>
+          <h2 class="section-title">PYÖRÄ KUNTOON<br>KAUDESTA TOISEEN</h2>
+          <p style="color:var(--gray-light); line-height:1.7; margin-bottom:1.5rem;">Kausihuolto pitää pyörän kunnossa kaudesta toiseen.</p>
+          <figure style="margin:0; border-radius:8px; overflow:hidden; line-height:0;">
+            <img src="images/kuva_huollosta.webp" alt="Pyörän korjaaminen" loading="lazy" style="width:100%; height:320px; object-fit:cover; display:block; border-radius:8px;">
+          </figure>
+        </div>
+        <div>
+          <h3 style="font-family:var(--font-display); letter-spacing:1px; font-size:1.6rem; margin-bottom:1rem; color:var(--yellow);">SISÄLTÖ</h3>
+          <ul class="content-list">
+            <li>Vaihteiden ja jarrujen puhdistus sekä säätö</li>
+            <li>Pinnojen kireyden tarkistus ja vanteen oikaisu</li>
+            <li>Liikkuvien osien voitelu</li>
+            <li>Etu- ja takanavan laakerivälyksen säätö</li>
+            <li>Ohjainlaakerin säätö</li>
+            <li>Renkaiden kuntoarvio ja ilmanpaineiden tarkistus</li>
+            <li>Mutterien ja ruuvien kiristys</li>
+            <li>Pyörän toimintojen tarkistus</li>
+            <li>Talvi/kesärenkaiden vaihto</li>
+          </ul>
+        </div>
+      </div>
+      <div style="margin-top:3rem;">
+        <h3 style="font-family:var(--font-display); letter-spacing:1px; font-size:1.6rem; margin-bottom:1rem; color:var(--yellow);">HINNASTO</h3>
+        <table class="price-table">
+          <caption>Pyörähuollon hinnasto Joensuussa</caption>
+          <thead><tr><th>Pyörätyyppi</th><th>Hinta</th></tr></thead>
+          <tbody>
+            <tr><td>Yksi- ja napavaihteiset</td><td>90 €</td></tr>
+            <tr><td>Ketjuvaihteiset</td><td>110 €</td></tr>
+            <tr><td>Sähköpyörät</td><td>130 €</td></tr>
+            <tr><td>Lasten pyörät (alle 15 tuumaiset)</td><td>Puoleen hintaan</td></tr>
+          </tbody>
+        </table>
+        <div class="promo-banner" style="margin-top:2rem;">
+          <div class="promo-text"><h3>💡 VINKKI: Varaa ajoissa!</h3><p>Kausihuolto kannattaa varata kauden lopussa – vältyt ruuhka-ajoilta.</p></div>
+          <a class="btn-dark" onclick="showPage('ajanvaraus')">Varaa aika →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="service-section" id="service-taysihuolto">
+    <div class="section-inner" style="max-width:1200px; margin:0 auto;">
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:3rem; align-items:start;">
+        <div>
+          <span class="section-tag">Täyshuolto</span>
+          <h2 class="section-title">PYÖRÄ<br>KUIN UUTENA</h2>
+          <p style="color:var(--gray-light); line-height:1.7; margin-bottom:1.5rem;">Täyshuolto on kattavin huoltopakettimme.</p>
+          <figure style="margin:0; border-radius:8px; overflow:hidden; line-height:0;">
+            <img src="images/kuva_huollosta.webp" alt="Pyörän korjaaminen" loading="lazy" style="width:100%; height:320px; object-fit:cover; display:block; border-radius:8px;">
+          </figure>
+        </div>
+        <div>
+          <h3 style="font-family:var(--font-display); letter-spacing:1px; font-size:1.6rem; margin-bottom:1rem; color:var(--yellow);">SISÄLTÖ</h3>
+          <ul class="content-list">
+            <li>Pyörän käsinpesu ja vahaus</li>
+            <li>Vaihteiden puhdistus ja säätö</li>
+            <li>Jarrujen puhdistus ja säätö</li>
+            <li>Vanteen oikaisu tarkkuuspenkissä</li>
+            <li>Vaijereiden ja ketjun voitelu</li>
+            <li>Shimano Nexus ja Alfine -takanavoille öljynvaihto</li>
+            <li>Ohjainlaakerin puhdistus</li>
+            <li>Pyörän toimintojen tarkistus</li>
+          </ul>
+        </div>
+      </div>
+      <div style="margin-top:3rem;">
+        <h3 style="font-family:var(--font-display); letter-spacing:1px; font-size:1.6rem; margin-bottom:1rem; color:var(--yellow);">HINNASTO</h3>
+        <table class="price-table">
+          <caption>Pyörähuollon hinnasto Joensuussa</caption>
+          <thead><tr><th>Pyörätyyppi</th><th>Hinta</th></tr></thead>
+          <tbody>
+            <tr><td>Yksi- ja napavaihteiset</td><td>185 €</td></tr>
+            <tr><td>Ketjuvaihteiset</td><td>195 €</td></tr>
+            <tr><td>Sähköpyörät</td><td>205 €</td></tr>
+            <tr><td>Lasten pyörät (alle 15 tuumaiset)</td><td>Puoleen hintaan</td></tr>
+          </tbody>
+        </table>
+        <div style="margin-top:2rem; text-align:center;">
+          <a class="btn-primary" onclick="showPage('ajanvaraus')" style="font-size:1rem; padding:1rem 2.5rem;">Varaa täyshuolto</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="service-section" id="service-muut">
+    <div class="section-inner" style="max-width:1200px; margin:0 auto;">
+      <span class="section-tag">Muut palvelut</span>
+      <h2 class="section-title">KAIKKI MUUT<br>KORJAUKSET</h2>
+      <div class="other-services">
+        <div class="other-service-item"><div class="osi-icon">⚙️</div>
+          <h4>Vaihteisto</h4><p>Vaihteiden säätö, kaapelien vaihto, kasettien huolto.<strong> 40,00 €.</strong></p></div>
+        <div class="other-service-item"><div class="osi-icon">🛞</div>
+          <h4>Vanteet ja renkaat</h4><p>Renkaanvaihto, sisäkumin korjaus, vanteen oikaisu.<strong> 45,00 €.</strong></p></div>
+        <div class="other-service-item"><div class="osi-icon">🛑</div>
+          <h4>Jarrut</h4><p>Levyjarrujen ja vannejarrujen säätö ja vaihto.<strong> 35,00 €.</strong></p></div>
+        <div class="other-service-item"><div class="osi-icon">💡</div>
+          <h4>Lisävarusteiden asennus</h4><p>Valot, lukot, lokasuojat, tavarakehikot.<strong> 25,00 €.</strong></p></div>
+        <div class="other-service-item"><div class="osi-icon">🆕</div>
+          <h4>Uuden pyörän kasaaminen</h4><p>Laatikosta saatu pyörä ajokuntoon.<strong> 70,00 €.</strong></p></div>
+        <div class="other-service-item"><div class="osi-icon">⚡</div>
+          <h4>Sähköpyörien huolto</h4><p>Sähköavusteisten pyörien erikoishuolto.<strong> 75,00 €.</strong></p></div>
+      </div>
+      <div style="margin-top:2.5rem; display:flex; gap:1rem; flex-wrap:wrap;">
+        <a class="btn-primary" onclick="showPage('ajanvaraus')">Varaa huoltoaika</a>
+        <a class="btn-outline" onclick="showPage('yhteystiedot')">Ota yhteyttä</a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand"><strong>PIELISEN PYÖRÄHUOLTO OY</strong><span>Pyöräkatu 1 · 80100 Joensuu</span></div>
+      <div class="footer-links">
+        <strong style="font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--yellow);margin-bottom:0.25rem;">Sivut</strong>
+        <a onclick="showPage('etusivu')">Etusivu</a>
+        <a onclick="showPage('palvelut'); showService('kausihuolto')">Palvelut</a>
+        <a onclick="showPage('ajanvaraus')">Ajanvaraus</a>
+        <a onclick="showPage('yhteystiedot')">Yhteystiedot</a>
+        <!-- <a href="tietosuojaseloste.html" target="_blank" rel="noopener"> -->
+        <a href="tietosuojaseloste.html">
+  		Tietosuojaseloste
+		</a> 
+     	<a href="#" id="open-cookie-settings">Evästeasetukset</a>
+    
+
+      </div>
+      <div class="footer-links">
+        <strong style="font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--yellow);margin-bottom:0.25rem;">Yhteystiedot</strong>
+        <a href="tel:+358401234567">040 123 4567</a>
+        <a href="mailto:info@pielisenPyorahuolto.fi">info@pielisenPyorahuolto.fi</a>
+        <span style="font-size:0.8rem;">Ma–Pe 8–17 · La 9–14</span>
+      </div>
+    </div>
+    <div class="footer-bottom"><span>© 2026 Pielisen Pyörähuolto Oy</span><span>Joensuu, Suomi</span></div>
+  </footer>
+
+  
+</div>
+
+<!-- ═══════════ AJANVARAUS ═══════════ -->
+<div class="page" id="page-ajanvaraus">
+<section style="padding: 3rem 1.5rem 4rem;">
+<div class="section-inner" style="max-width:1280px;">
+
+  <span class="section-tag">Ajanvaraus</span>
+  <h1 class="section-title">VARAA HUOLTOAIKA</h1>
+  <p class="section-lead">Valitse sinulle sopiva palvelu ja aika. Saat vahvistuksen sähköpostiisi välittömästi.</p>
+
+  <!-- Vaihe-indikaattori -->
+  <div class="steps-indicator">
+    <div class="step-ind active" id="sind-1"><div class="step-ind-num">1</div><span>Palvelu</span></div>
+    <div class="step-ind-line"></div>
+    <div class="step-ind" id="sind-2"><div class="step-ind-num">2</div><span>Pyörä</span></div>
+    <div class="step-ind-line"></div>
+    <div class="step-ind" id="sind-3"><div class="step-ind-num">3</div><span>Aika</span></div>
+    <div class="step-ind-line"></div>
+    <div class="step-ind" id="sind-4"><div class="step-ind-num">4</div><span>Yhteystiedot</span></div>
+  </div>
+
+  <div class="booking-layout">
+
+    <!-- ── Vasen: lomakevaiheet ── -->
+    <div>
+
+      <!-- VAIHE 1: Palvelu -->
+      <div id="vaihe-1">
+        <h2 style="font-family:var(--font-display); font-size:1.8rem; letter-spacing:1px; margin-bottom:1.5rem; color:var(--white);">VALITSE PALVELU</h2>
+        <div class="palvelu-valinnat">
+          <button class="palvelu-btn" onclick="valitsePalvelu('kausihuolto', this)">
+            <div class="pb-icon">🔄</div>
+            <span class="pb-nimi">KAUSIHUOLTO</span>
+            <span class="pb-hinta">alkaen 90 €</span>
+          </button>
+          <button class="palvelu-btn" onclick="valitsePalvelu('taysihuolto', this)">
+            <div class="pb-icon">✨</div>
+            <span class="pb-nimi">TÄYSHUOLTO</span>
+            <span class="pb-hinta">alkaen 185 €</span>
+          </button>
+          <button class="palvelu-btn" onclick="valitsePalvelu('muu', this)">
+            <div class="pb-icon">🛠️</div>
+            <span class="pb-nimi">MUU KORJAUS</span>
+            <span class="pb-hinta">Pyydä arvio</span>
+          </button>
+        </div>
+        <div id="virhe-1" class="virhe-boksi">⚠️ Valitse palvelu ennen jatkamista.</div>
+        <div class="vaihe-nav">
+          <button class="btn-primary" onclick="seuraavaVaihe(1)">Seuraava →</button>
+        </div>
+      </div>
+
+      <!-- VAIHE 2: Pyörätyyppi -->
+      <div id="vaihe-2" style="display:none;">
+        <h2 style="font-family:var(--font-display); font-size:1.8rem; letter-spacing:1px; margin-bottom:1.5rem; color:var(--white);">PYÖRÄTYYPPI</h2>
+        <div class="pyora-valinnat">
+          <button class="pyora-btn" onclick="valitsePyora('Yksi- tai napavaihteinen', this)">
+            <span class="pyora-icon">🚲</span>
+            <span class="pyora-nimi">Yksi- tai napavaihteinen</span>
+          </button>
+          <button class="pyora-btn" onclick="valitsePyora('Ketjuvaihteinen', this)">
+            <span class="pyora-icon">⚙️</span>
+            <span class="pyora-nimi">Ketjuvaihteinen</span>
+          </button>
+          <button class="pyora-btn" onclick="valitsePyora('Sähköpyörä', this)">
+            <span class="pyora-icon">⚡</span>
+            <span class="pyora-nimi">Sähköpyörä</span>
+          </button>
+          <button class="pyora-btn" onclick="valitsePyora('Lasten pyörä (alle 15 tuumaa)', this)">
+            <span class="pyora-icon">🧒</span>
+            <span class="pyora-nimi">Lasten pyörä (alle 15 tuumaa)</span>
+          </button>
+        </div>
+        <div id="virhe-2" class="virhe-boksi">⚠️ Valitse pyörätyyppi ennen jatkamista.</div>
+        <div class="vaihe-nav">
+          <button class="btn-outline" onclick="takaisin(2)">← Takaisin</button>
+          <button class="btn-primary" onclick="seuraavaVaihe(2)">Seuraava →</button>
+        </div>
+      </div>
+
+      <!-- VAIHE 3: Kalenteri -->
+      <div id="vaihe-3" style="display:none;">
+        <h2 style="font-family:var(--font-display); font-size:1.8rem; letter-spacing:1px; margin-bottom:1.5rem; color:var(--white);">VALITSE AIKA</h2>
+        <div id="virhe-3" class="virhe-boksi">⚠️ Valitse aika ennen jatkamista.</div>
+
+        <div class="kalenteri-wrap">
+          <div class="kalenteri-spinner" id="kal-spinner">
+            <div class="spinner-ring"></div>
+            <span>Haetaan vapaita aikoja…</span>
+          </div>
+
+          <div class="viikko-nav">
+            <button id="btn-edellinen" onclick="vaihdaViikko(-1)" disabled title="Edellinen viikko">◀</button>
+            <div class="viikko-otsikko" id="viikko-otsikko">—</div>
+            <button id="btn-seuraava" onclick="vaihdaViikko(1)" title="Seuraava viikko">▶</button>
+          </div>
+
+          <div class="kalenteri-grid" id="kalenteri-grid">
+            <!-- Täytetään JS:llä -->
+          </div>
+        </div>
+
+        <div class="vaihe-nav" style="margin-top:1.5rem;">
+          <button class="btn-outline" onclick="takaisin(3)">← Takaisin</button>
+          <button class="btn-primary" onclick="seuraavaVaihe(3)">Seuraava →</button>
+        </div>
+      </div>
+
+      <!-- VAIHE 4: Yhteystiedot -->
+      <div id="vaihe-4" style="display:none;">
+        <h2 style="font-family:var(--font-display); font-size:1.8rem; letter-spacing:1px; margin-bottom:1.5rem; color:var(--white);">YHTEYSTIEDOT</h2>
+        <div id="virhe-4" class="virhe-boksi"></div>
+
+        <div class="booking-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Etunimi *</label>
+              <input type="text" id="f-etunimi" placeholder="Matti" autocomplete="given-name">
+            </div>
+            <div class="form-group">
+              <label>Sukunimi *</label>
+              <input type="text" id="f-sukunimi" placeholder="Meikäläinen" autocomplete="family-name">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Puhelinnumero *</label>
+              <input type="tel" id="f-puh" placeholder="040 123 4567" autocomplete="tel">
+            </div>
+            <div class="form-group">
+              <label>Sähköposti *</label>
+              <input type="email" id="f-email" placeholder="matti@esimerkki.fi" autocomplete="email">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Lisätietoja (vapaaehtoinen)</label>
+            <textarea id="f-lisatiedot" placeholder="Esim. 'Takajarru ei toimi' tai 'Pyörä ei ole ollut huollossa vuosiin'…"></textarea>
+          </div>
+          <button class="btn-primary" onclick="lahetaVaraus()" id="btn-laheta" style="width:100%; padding:1rem; font-size:1rem;">
+            Lähetä varaus →
+          </button>
+          <p style="font-size:0.75rem; color:var(--gray-light); margin-top:0.75rem; text-align:center;">Tietojasi käytetään vain ajanvarauksen käsittelyyn.</p>
+        </div>
+
+        <div class="vaihe-nav">
+          <button class="btn-outline" onclick="takaisin(4)">← Takaisin</button>
+        </div>
+      </div>
+
+      <!-- VALMIS -->
+      <div id="vaihe-valmis" class="varaus-valmis">
+        <div class="valmis-ikoni">🎉</div>
+        <h2 style="font-family:var(--font-display); font-size:2.5rem; letter-spacing:2px; color:var(--yellow); margin-bottom:0.5rem;">VARATTU!</h2>
+        <p style="color:var(--gray-light); font-size:1rem; margin-bottom:0.5rem;">Vahvistus lähetettiin sähköpostiisi.</p>
+        <div class="valmis-koodi" id="valmis-koodi-boksi">
+          <span>Vahvistuskoodi</span>
+          <strong id="valmis-koodi-teksti">—</strong>
+        </div>
+        <p style="color:var(--gray-light); font-size:0.875rem; max-width:420px; margin:0 auto 2rem; line-height:1.6;">Ota koodi talteen – se tarvitaan mahdollisessa peruutuksessa. Jos et saanut sähköpostia, tarkista roskapostikansio tai soita meille.</p>
+        <button class="btn-primary" onclick="uusiVaraus()" style="margin-top:0.5rem;">Tee uusi varaus</button>
+      </div>
+
+    </div>
+
+    <!-- ── Oikea: yhteenveto ── -->
+    <div>
+      <div class="varaus-yhteenveto">
+        <div class="yhteenveto-otsikko">VARAUKSEN TIEDOT</div>
+        <div id="yht-sisalto">
+          <p class="yht-placeholder">Tiedot täydentyvät valintojen mukaan…</p>
+        </div>
+        <div style="margin-top:1.5rem; padding-top:1rem; border-top:1px solid var(--gray-mid);">
+          <div style="font-size:0.75rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--yellow); margin-bottom:0.6rem;">Aukioloajat</div>
+          <p style="font-size:0.82rem; color:var(--gray-light); line-height:1.7;">Ma–Pe klo 9–16<br>La 9–14 (ei huoltoja)<br>Puhelin: <a href="tel:+358401234567" style="color:var(--yellow); text-decoration:none;">040 123 4567</a></p>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /booking-layout -->
+</div>
+</section>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand"><strong>PIELISEN PYÖRÄHUOLTO OY</strong><span>Pyöräkatu 1 · 80100 Joensuu</span></div>
+      <div class="footer-links">
+        <a onclick="showPage('etusivu')">Etusivu</a>
+        <a onclick="showPage('palvelut'); showService('kausihuolto')">Palvelut</a>
+        <a onclick="showPage('ajanvaraus')">Ajanvaraus</a>
+        <a onclick="showPage('yhteystiedot')">Yhteystiedot</a>
+        <!-- <a href="tietosuojaseloste.html" target="_blank" rel="noopener"> -->
+        <a href="tietosuojaseloste.html">
+  		Tietosuojaseloste
+		</a> 
+         
+      </div>
+    </div>
+    <div class="footer-bottom"><span>© 2026 Pielisen Pyörähuolto Oy</span><span>Joensuu, Suomi</span> </div>
+  </footer>
+</div>
+
+<!-- ═══════════ YHTEYSTIEDOT ═══════════ -->
+<div class="page" id="page-yhteystiedot">
+  <section style="padding: 3rem 1.5rem;">
+    <div class="section-inner">
+      <span class="section-tag">Yhteystiedot</span>
+      <h1 class="section-title">OTA YHTEYTTÄ</h1>
+      <p class="section-lead">Löydät meidät Joensuun sydämestä. Tervetuloa!</p>
+      <div class="contact-grid">
+        <div class="contact-card">
+          <div class="contact-detail"><span class="cd-icon">🏢</span><div class="cd-content"><label>Yritys</label><p>Pielisen Pyörähuolto Oy</p></div></div>
+          <div class="contact-detail"><span class="cd-icon">📍</span><div class="cd-content"><label>Osoite</label><p>Pyöräkatu 1<br>80100 Joensuu</p></div></div>
+          <div class="contact-detail"><span class="cd-icon">📞</span><div class="cd-content"><label>Puhelin</label><a href="tel:+358401234567">040 123 4567</a></div></div>
+          <div class="contact-detail"><span class="cd-icon">✉️</span><div class="cd-content">
+            <label>Sähköposti</label><a href="mailto:info@pielisenPyorahuolto.fi">info@pielisenPyorahuolto.fi</a></div></div>
+          <div class="contact-detail"><span class="cd-icon">🕐</span><div class="cd-content">
+            <label>Aukioloajat</label><p>Ma–Pe: 8–17<br>La: 9–14<br>Su: suljettu</p></div></div>
+          <div class="contact-detail"><span class="cd-icon">💳</span><div class="cd-content">
+            <label>Maksutavat</label><p>Pankki- ja luottokortit (Visa, Mastercard, Amex)</p></div></div>
+                 
+          <div style="margin-top:1.5rem;"><a class="btn-primary" onclick="showPage('ajanvaraus')" style="display:block; text-align:center;">Varaa huoltoaika</a></div>
+        </div>
+        <div>
+          <div style="background:var(--gray); border:1px solid var(--gray-mid); border-radius:10px; overflow:hidden; height:340px;">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1834.9924531196764!2d29.773106776670584!3d62.618132076370706!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x469b86f63a120867%3A0x8516007ace01ca9a!2sVoimatie%205%2C%2080100%20Joensuu!5e0!3m2!1sfi!2sfi!4v1776685103937!5m2!1sfi!2sfi"
+                    width="100%" height="340" style="border:0; display:block;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+          <div style="margin-top:1rem; background:var(--gray); border:1px solid var(--gray-mid); border-radius:8px; padding:1.5rem;">
+            <h4 style="font-weight:700; margin-bottom:0.75rem;">🚲 Miten löydät perille?</h4>
+            <p style="font-size:0.875rem; color:var(--gray-light); line-height:1.6;">Pyöräkatu 1 sijaitsee Joensuun keskustan tuntumassa. Pysäköinti kadun varrella. Pyörällä pääset helposti – onhan kyseessä Pyöräkatu!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand"><strong>PIELISEN PYÖRÄHUOLTO OY</strong><span>Pyöräkatu 1 · 80100 Joensuu</span></div>
+      <div class="footer-links">
+        <a onclick="showPage('etusivu')">Etusivu</a>
+        <a onclick="showPage('palvelut'); showService('kausihuolto')">Palvelut</a>
+        <a onclick="showPage('ajanvaraus')">Ajanvaraus</a>
+        <a onclick="showPage('yhteystiedot')">Yhteystiedot</a>
+        <!-- <a href="tietosuojaseloste.html" target="_blank" rel="noopener"> -->
+        <a href="tietosuojaseloste.html">
+  		Tietosuojaseloste
+		</a> 
+
+      </div>
+    </div>
+    <div class="footer-bottom"><span>© 2026 Pielisen Pyörähuolto Oy</span><span>Joensuu, Suomi</span> </div> 
+  </footer>
+</div>
+
+<div id="cookie-banner" class="cookie-banner">
+  <div class="cookie-content">
+    <div class="cookie-text">
+      Käytämme evästeitä parantaaksemme käyttökokemusta. Voit hyväksyä kaikki tai hallita asetuksia.
+    </div>
+
+    <div class="cookie-buttons">
+      <button id="accept-all">Hyväksy kaikki</button>
+      <button id="reject-all">Hylkää</button>
+      <button id="customize">Asetukset</button>
+    </div>
+  </div>
+</div>
+
+<div id="cookie-modal" class="cookie-modal">
+  <div class="cookie-modal-content">
+    <h3>Evästeasetukset</h3>
+
+    <label>
+      <input type="checkbox" checked disabled>
+      Välttämättömät evästeet (aina päällä)
+    </label>
+
+    <label>
+      <input type="checkbox" id="analytics-consent">
+      Analytiikka (Google Analytics)
+    </label>
+
+    <div class="modal-buttons">
+      <button id="save-settings">Tallenna valinnat</button>
+    </div>
+  </div>
+</div>
+
+<!-- <a href="#" id="open-cookie-settings" class="cookie-settings-link">
+  Muuta evästeasetuksia
+</a> -->
+  
+<div class="toast" id="toast"></div>
+
+<script>
+// ════════════════════════════════════════════════════════
+// KONFIGURAATIO – muuta tämä tuotantoon
+// ════════════════════════════════════════════════════════
+// Kehitysympäristössä: 'http://localhost:3001'
+// Tuotannossa: 'https://api.sinundomainisi.fi'
+const API_URL  = '/pielisenpyorahuolto/api';   // ← PHP-tiedostojen sijainti
+const DEMO_TILA = false;   // ← false = käytetään oikeaa backendiä
+ 
+// ════════════════════════════════════════════════════════
+// TILA
+// ════════════════════════════════════════════════════════
+const tila = {
+  palvelu:    null,
+  palveluNimi: null,
+  pyora:      null,
+  aikaId:     null,
+  aikaFi:     null,
+  nykyViikko: 0,     // offset nykyisestä viikosta
+  kaikki:     [],    // kaikki haetut ajat [{paiva, paiva_fi, dow, ajat:[{id,alkaa,loppuu}]}]
+  haettu:     false,
+};
+
+const VIIKONPAIVAT = ['', 'MA', 'TI', 'KE', 'TO', 'PE', 'LA', 'SU'];
+
+// ════════════════════════════════════════════════════════
+// NAVIGAATIO
+// ════════════════════════════════════════════════════════
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  document.querySelectorAll('#desktop-nav a').forEach(a => a.classList.remove('active'));
+  const nav = document.getElementById('nav-' + id);
+  if (nav) nav.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  if (id === 'ajanvaraus') resetVaraus();
+}
+
+function showService(id) {
+  document.querySelectorAll('.service-section').forEach(s => s.classList.remove('active'));
+  document.getElementById('service-' + id).classList.add('active');
+  document.querySelectorAll('.sub-nav a').forEach(a => a.classList.remove('active'));
+  const el = document.getElementById('subnav-' + id);
+  if (el) el.classList.add('active');
+}
+
+function toggleMobile() {
+  document.getElementById('mobile-nav').classList.toggle('open');
+  document.getElementById('hamburger').classList.toggle('open');
+}
+function closeMobile() {
+  document.getElementById('mobile-nav').classList.remove('open');
+  document.getElementById('hamburger').classList.remove('open');
+}
+
+// ════════════════════════════════════════════════════════
+// VAIHE-HALLINTA
+// ════════════════════════════════════════════════════════
+function naytaVaihe(n) {
+  [1,2,3,4,'valmis'].forEach(v => {
+    const el = document.getElementById('vaihe-' + v);
+    if (el) el.style.display = 'none';
+  });
+  const nayt = document.getElementById('vaihe-' + n);
+  if (nayt) nayt.style.display = 'block';
+
+  // Päivitä indikaattorit
+  for (let i = 1; i <= 4; i++) {
+    const ind = document.getElementById('sind-' + i);
+    if (!ind) continue;
+    ind.classList.remove('active','done');
+    if (i < n) ind.classList.add('done');
+    else if (i === n) ind.classList.add('active');
+  }
+}
+
+function seuraavaVaihe(nyky) {
+  document.getElementById('virhe-' + nyky).classList.remove('vis');
+
+  if (nyky === 1) {
+    if (!tila.palvelu) { document.getElementById('virhe-1').classList.add('vis'); return; }
+    naytaVaihe(2);
+  } else if (nyky === 2) {
+    if (!tila.pyora) { document.getElementById('virhe-2').classList.add('vis'); return; }
+    naytaVaihe(3);
+    if (!tila.haettu) haeAjat();
+    else renderViikko();
+  } else if (nyky === 3) {
+    if (!tila.aikaId) { document.getElementById('virhe-3').classList.add('vis'); return; }
+    naytaVaihe(4);
+  }
+  paivitaYhteenveto();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function takaisin(nyky) {
+  naytaVaihe(nyky - 1);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ════════════════════════════════════════════════════════
+// VALINNAT
+// ════════════════════════════════════════════════════════
+function valitsePalvelu(koodi, el) {
+  tila.palvelu = koodi;
+  const nimet = { kausihuolto:'Kausihuolto', taysihuolto:'Täyshuolto', muu:'Muu korjaus' };
+  tila.palveluNimi = nimet[koodi] || koodi;
+  document.querySelectorAll('.palvelu-btn').forEach(b => b.classList.remove('selected'));
+  el.classList.add('selected');
+  document.getElementById('virhe-1').classList.remove('vis');
+  paivitaYhteenveto();
+}
+
+function valitsePyora(nimi, el) {
+  tila.pyora = nimi;
+  document.querySelectorAll('.pyora-btn').forEach(b => b.classList.remove('selected'));
+  el.classList.add('selected');
+  document.getElementById('virhe-2').classList.remove('vis');
+  paivitaYhteenveto();
+}
+
+// ════════════════════════════════════════════════════════
+// AJAT – haku (oikea API tai demo)
+// ════════════════════════════════════════════════════════
+async function haeAjat() {
+  console.log('Haetaan:', `${API_URL}/ajat.php`);
+  const spinner = document.getElementById('kal-spinner');
+  spinner.classList.add('vis');
+
+  try {
+    if (DEMO_TILA) {
+      tila.kaikki = generoimoDemoAjat();
+    } else { 
+      const r = await fetch(`${API_URL}/ajat.php`);
+      if (!r.ok) throw new Error('Virhe haettaessa aikoja');
+      const data = await r.json();
+      tila.kaikki = data.paivat || [];
+    }
+    tila.haettu = true;
+  } catch (e) {
+    console.error(e);
+    showToast('⚠️ Aikojen haku epäonnistui – yritä uudelleen', true);
+  } finally {
+    spinner.classList.remove('vis');
+    renderViikko();
+  }
+}
+
+// Demo-data: generoi realistisia vapaita aikoja
+function generoimoDemoAjat() {
+  const paivat = [];
+  const tana = new Date();
+  tana.setHours(0,0,0,0);
+
+  for (let p = 0; p < 60; p++) {
+    const d = new Date(tana);
+    d.setDate(d.getDate() + p);
+    const dow = d.getDay(); // 0=su, 1=ma...5=pe
+    if (dow === 0 || dow === 6) continue; // ei viikonloppuja
+
+    const kaikki_ajat = ['09:00','10:00','11:00','12:00','13:00','14:00','15:00'];
+    // Satunnaisesti jotkut ajat varattuna
+    const seed = d.getDate() + d.getMonth() * 100;
+    const vapaat = kaikki_ajat.filter((_, i) => !((seed + i * 37) % 4 === 0));
+
+    const kuukausi = String(d.getMonth() + 1).padStart(2,'0');
+    const paiva_str = String(d.getDate()).padStart(2,'0');
+    const vuosi = d.getFullYear();
+
+    paivat.push({
+      paiva: `${vuosi}-${kuukausi}-${paiva_str}`,
+      paiva_fi: `${paiva_str}.${kuukausi}.${vuosi}`,
+      dow,
+      ajat: vapaat.map((a, i) => ({
+        id: p * 100 + i + 1,
+        alkaa: a,
+        loppuu: `${String(parseInt(a)+1).padStart(2,'0')}:00`,
+      })),
+    });
+  }
+  return paivat;
+}
+
+// ════════════════════════════════════════════════════════
+// KALENTERI – render
+// ════════════════════════════════════════════════════════
+function getViikkoPaivat(viikkoOffset) {
+  const tana = new Date();
+  const dow = tana.getDay() === 0 ? 7 : tana.getDay(); // 1=ma
+  const maanantai = new Date(tana);
+  maanantai.setDate(tana.getDate() - dow + 1 + viikkoOffset * 7);
+  maanantai.setHours(0,0,0,0);
+
+  const paivat = [];
+  for (let i = 0; i < 5; i++) {
+    const d = new Date(maanantai);
+    d.setDate(maanantai.getDate() + i);
+    const kk = String(d.getMonth()+1).padStart(2,'0');
+    const pp = String(d.getDate()).padStart(2,'0');
+    paivat.push(`${d.getFullYear()}-${kk}-${pp}`);
+  }
+  return { paivat, maanantai };
+}
+
+function renderViikko() {
+  const { paivat, maanantai } = getViikkoPaivat(tila.nykyViikko);
+  const perjantai = new Date(maanantai);
+  perjantai.setDate(maanantai.getDate() + 4);
+
+  // Otsikko
+  const fmt = d => d.toLocaleDateString('fi-FI', { day:'numeric', month:'numeric' });
+  document.getElementById('viikko-otsikko').textContent =
+    `${fmt(maanantai)} – ${fmt(perjantai)} ${perjantai.getFullYear()}`;
+
+  // Edellinen-nappi: ei mennä menneisyyteen
+  document.getElementById('btn-edellinen').disabled = tila.nykyViikko <= 0;
+  document.getElementById('btn-seuraava').disabled = tila.nykyViikko >= 11; // max 12 viikkoa eteenpäin
+
+  const grid = document.getElementById('kalenteri-grid');
+  grid.innerHTML = '';
+
+  const tanaan = new Date();
+  tanaan.setHours(0,0,0,0);
+  const tanaanStr = isoDate(tanaan);
+
+  paivat.forEach(paivaStr => {
+    const d = new Date(paivaStr + 'T00:00:00');
+    const pp = String(d.getDate()).padStart(2,'0');
+    const kk = String(d.getMonth()+1).padStart(2,'0');
+    const viikonpaiva_idx = d.getDay() === 0 ? 7 : d.getDay();
+    const viikonpaiva = VIIKONPAIVAT[viikonpaiva_idx] || '';
+
+    // Etsi haetusta datasta
+    const paivaData = tila.kaikki.find(p => p.paiva === paivaStr);
+    const ajat = paivaData ? paivaData.ajat : [];
+    const onMennyt = d < tanaan;
+
+    const col = document.createElement('div');
+    col.className = 'kalenteri-paiva';
+
+    const tanaan_class = paivaStr === tanaanStr ? ' tanaan' : '';
+
+    col.innerHTML = `
+      <div class="paiva-otsikko">
+        <span class="paiva-viikonpaiva">${viikonpaiva}</span>
+        <span class="paiva-pvm${tanaan_class}">${pp}.${kk}</span>
+      </div>
+      <div class="paiva-ajat" id="paiva-ajat-${paivaStr}"></div>
+    `;
+
+    const ajatDiv = col.querySelector('.paiva-ajat');
+
+    if (onMennyt || ajat.length === 0) {
+      ajatDiv.innerHTML = `<span class="ei-aikoja">${onMennyt ? 'Mennyt' : 'Täynnä'}</span>`;
+    } else {
+      ajat.forEach(a => {
+        const nappi = document.createElement('button');
+        nappi.className = 'aika-nappi' + (tila.aikaId === a.id ? ' valittu' : '');
+        nappi.textContent = a.alkaa;
+        nappi.dataset.id = a.id;
+        nappi.dataset.aika = `${pp}.${kk} klo ${a.alkaa}–${a.loppuu}`;
+        nappi.onclick = () => valitseAika(a.id, `${pp}.${kk} klo ${a.alkaa}–${a.loppuu}`, nappi);
+        ajatDiv.appendChild(nappi);
+      });
+    }
+
+    grid.appendChild(col);
+  });
+}
+
+function isoDate(d) {
+  const kk = String(d.getMonth()+1).padStart(2,'0');
+  const pp = String(d.getDate()).padStart(2,'0');
+  return `${d.getFullYear()}-${kk}-${pp}`;
+}
+
+function valitseAika(id, teksti, el) {
+  tila.aikaId  = id;
+  tila.aikaFi  = teksti;
+  document.querySelectorAll('.aika-nappi').forEach(b => b.classList.remove('valittu'));
+  el.classList.add('valittu');
+  document.getElementById('virhe-3').classList.remove('vis');
+  paivitaYhteenveto();
+}
+
+function vaihdaViikko(dir) {
+  tila.nykyViikko += dir;
+  renderViikko();
+}
+
+// ════════════════════════════════════════════════════════
+// YHTEENVETO
+// ════════════════════════════════════════════════════════
+function paivitaYhteenveto() {
+  const div = document.getElementById('yht-sisalto');
+  const rivit = [];
+
+  if (tila.palvelu)    rivit.push(rivi('Palvelu',     tila.palveluNimi));
+  if (tila.pyora)      rivit.push(rivi('Pyörätyyppi', tila.pyora));
+  if (tila.aikaFi)     rivit.push(rivi('Aika',        tila.aikaFi, true));
+
+  if (!rivit.length) {
+    div.innerHTML = '<p class="yht-placeholder">Tiedot täydentyvät valintojen mukaan…</p>';
+    return;
+  }
+  div.innerHTML = rivit.join('');
+}
+
+function rivi(label, arvo, highlight=false) {
+  return `<div class="yht-rivi">
+    <span class="yht-label">${label}</span>
+    <span class="yht-arvo${highlight ? ' highlight' : ''}">${arvo}</span>
+  </div>`;
+}
+
+// ════════════════════════════════════════════════════════
+// VARAUKSEN LÄHETYS
+// ════════════════════════════════════════════════════════
+async function lahetaVaraus() {
+  const etunimi   = document.getElementById('f-etunimi').value.trim();
+  const sukunimi  = document.getElementById('f-sukunimi').value.trim();
+  const puhelin   = document.getElementById('f-puh').value.trim();
+  const sahkoposti= document.getElementById('f-email').value.trim();
+  const lisatiedot= document.getElementById('f-lisatiedot').value.trim();
+
+  const virheDiv = document.getElementById('virhe-4');
+  virheDiv.classList.remove('vis');
+
+  // Validointi
+  const virheet = [];
+  if (!etunimi)  { virheet.push('etunimi');    document.getElementById('f-etunimi').classList.add('form-err'); }
+  if (!sukunimi) { virheet.push('sukunimi');   document.getElementById('f-sukunimi').classList.add('form-err'); }
+  if (!puhelin)  { virheet.push('puhelin');    document.getElementById('f-puh').classList.add('form-err'); }
+  if (!sahkoposti || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(sahkoposti)) {
+    virheet.push('sahkoposti'); document.getElementById('f-email').classList.add('form-err');
+  }
+
+  ['f-etunimi','f-sukunimi','f-puh','f-email'].forEach(id => {
+    document.getElementById(id).addEventListener('input', () => document.getElementById(id).classList.remove('form-err'), { once:true });
+  });
+
+  if (virheet.length) {
+    virheDiv.textContent = '⚠️ Täytä kaikki pakolliset kentät oikein.';
+    virheDiv.classList.add('vis');
+    return;
+  }
+
+  const btn = document.getElementById('btn-laheta');
+  btn.disabled = true;
+  btn.textContent = 'Lähetetään…';
+
+  try {
+    let vahvistuskoodi, aikaFi;
+
+    if (DEMO_TILA) {
+      // Demo: simuloi onnistunut varaus
+      await new Promise(r => setTimeout(r, 800));
+      vahvistuskoodi = 'DEMO' + Math.random().toString(16).slice(2,6).toUpperCase();
+      aikaFi = tila.aikaFi;
+    } else { 
+       const r = await fetch(`${API_URL}/varaa.php`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          aika_id:     tila.aikaId,
+          palvelu:     tila.palvelu,
+          pyoratyyppi: tila.pyora,
+          etunimi, sukunimi, puhelin, sahkoposti, lisatiedot,
+        }),
+      });
+      const data = await r.json();
+      if (!r.ok) {
+        throw new Error(data.virhe || 'Varaus epäonnistui');
+      }
+      vahvistuskoodi = data.vahvistuskoodi;
+      aikaFi = `${data.aika.paiva_fi} klo ${data.aika.alkaa_fi}–${data.aika.loppuu_fi}`;
+    }
+
+    // Näytä valmis-näkymä
+    document.getElementById('valmis-koodi-teksti').textContent = vahvistuskoodi;
+    naytaVaihe('valmis');
+    document.getElementById('vaihe-valmis').classList.add('vis');
+
+    // Päivitä yhteenveto
+    document.getElementById('yht-sisalto').innerHTML = [
+      rivi('Palvelu',      tila.palveluNimi),
+      rivi('Pyörätyyppi',  tila.pyora),
+      rivi('Aika',         aikaFi, true),
+      rivi('Asiakas',      `${etunimi} ${sukunimi}`),
+      rivi('Vahvistuskoodi', vahvistuskoodi),
+    ].join('');
+
+  } catch(e) {
+    virheDiv.textContent = '⚠️ ' + e.message;
+    virheDiv.classList.add('vis');
+    btn.disabled = false;
+    btn.textContent = 'Lähetä varaus →';
+  }
+}
+
+// ════════════════════════════════════════════════════════
+// RESET
+// ════════════════════════════════════════════════════════
+function resetVaraus() {
+  Object.assign(tila, {
+    palvelu: null, palveluNimi: null, pyora: null,
+    aikaId: null, aikaFi: null, nykyViikko: 0,
+    kaikki: [], haettu: false,
+  });
+  document.querySelectorAll('.palvelu-btn, .pyora-btn').forEach(b => b.classList.remove('selected'));
+  ['f-etunimi','f-sukunimi','f-puh','f-email','f-lisatiedot'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) { el.value = ''; el.classList.remove('form-err'); }
+  });
+  const btn = document.getElementById('btn-laheta');
+  if (btn) { btn.disabled = false; btn.textContent = 'Lähetä varaus →'; }
+  document.getElementById('vaihe-valmis').classList.remove('vis');
+  [1,2,3,4].forEach(i => { const v = document.getElementById('virhe-'+i); if(v) v.classList.remove('vis'); });
+  paivitaYhteenveto();
+  naytaVaihe(1);
+}
+
+function uusiVaraus() { resetVaraus(); }
+
+// ════════════════════════════════════════════════════════
+// TOAST
+// ════════════════════════════════════════════════════════
+function showToast(msg, err=false) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.style.background = err ? '#e04060' : 'var(--yellow)';
+  t.style.color = err ? '#fff' : 'var(--black)';
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 4000);
+}
+</script>
+  
+   
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const banner = document.getElementById("cookie-banner");
+  const modal = document.getElementById("cookie-modal");
+  const analyticsCheckbox = document.getElementById("analytics-consent");
+
+  const consent = JSON.parse(localStorage.getItem("cookieConsent"));
+
+  if (!consent) {
+    banner.style.display = "block";
+  } else {
+    if (consent.analytics) enableAnalytics();
+  }
+
+  document.getElementById("accept-all").onclick = function () {
+    const settings = { analytics: true };
+    localStorage.setItem("cookieConsent", JSON.stringify(settings));
+    enableAnalytics();
+    banner.style.display = "none";
+  };
+
+  document.getElementById("reject-all").onclick = function () {
+    const settings = { analytics: false };
+    localStorage.setItem("cookieConsent", JSON.stringify(settings));
+    disableAnalytics();
+    banner.style.display = "none";
+  };
+
+  document.getElementById("customize").onclick = function () {
+    modal.style.display = "block";
+  };
+
+  document.getElementById("save-settings").onclick = function () {
+    const settings = {
+      analytics: analyticsCheckbox.checked
+    };
+
+    localStorage.setItem("cookieConsent", JSON.stringify(settings));
+
+    if (settings.analytics) {
+      enableAnalytics();
+    } else {
+      disableAnalytics();
+    }
+
+    modal.style.display = "none";
+    banner.style.display = "none";
+  };
+
+  document.getElementById("open-cookie-settings").onclick = function (e) {
+    e.preventDefault();
+    modal.style.display = "block";
+
+    const saved = JSON.parse(localStorage.getItem("cookieConsent"));
+    if (saved) {
+      analyticsCheckbox.checked = saved.analytics;
+    }
+  };
+});
+
+function enableAnalytics() {
+  if (window.gaLoaded) return;
+  window.gaLoaded = true;
+
+  const script = document.createElement("script");
+  const GA_ID = "G-C0N8ECVEKB";
+  script.src = "https://www.googletagmanager.com/gtag/js?id=" + GA_ID;
+  script.async = true;
+  document.head.appendChild(script);
+
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', GA_ID); 
+}
+
+function disableAnalytics() {
+  window['ga-disable-G-C0N8ECVEKB'] = true;
+}
+</script>
+  
+<script>
+(function() {
+  const now = new Date();
+  const month = now.getMonth(); // 0 = tammikuu, 4 = toukokuu
+
+  if (month === 3 || month === 4) {
+    document.getElementById("campaign-banner").style.display = "block";
+  }
+})();
+</script>
+  
+</body>
+</html>
